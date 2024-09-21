@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
   final Function() onButtonPressed;
-  const MainButton({super.key, required this.onButtonPressed});
+  final String text;
+  const MainButton({
+    super.key,
+    required this.onButtonPressed,
+    this.text = "Login",
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +19,9 @@ class MainButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green,
         ),
-        child: const Text(
-          'Login',
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             fontSize: 20.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,

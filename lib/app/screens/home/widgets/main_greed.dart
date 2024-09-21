@@ -30,18 +30,6 @@ class MainGreed extends StatelessWidget {
           onTap: onOpenFilePressed,
           color: Colors.green.shade300,
         ),
-        ContainerButton(
-          title: "Encrypt",
-          icon: Icons.enhanced_encryption_rounded,
-          onTap: onOpenFilePressed,
-          color: Colors.green.shade300,
-        ),
-        ContainerButton(
-          title: "Decrypt",
-          icon: Icons.no_encryption_rounded,
-          onTap: onOpenFilePressed,
-          color: Colors.green,
-        ),
       ],
     );
   }

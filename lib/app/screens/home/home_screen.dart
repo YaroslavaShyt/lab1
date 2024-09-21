@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lab1/app/common/widgets/form_text_field.dart';
 import 'package:lab1/app/screens/home/home_view_model.dart';
-import 'package:lab1/app/screens/home/widgets/border_button.dart';
+import 'package:lab1/app/screens/home/widgets/create_file/create_file_widget.dart';
 import 'package:lab1/app/screens/home/widgets/drawer/main_drawer.dart';
 import 'package:lab1/app/screens/home/widgets/main_greed.dart';
-import 'package:lab1/app/screens/home/widgets/print_and_save_buttons_row.dart';
+import 'package:lab1/app/screens/home/widgets/open_file/open_file_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -30,16 +29,31 @@ class HomeScreen extends StatelessWidget {
       drawer: _buildDrawer(context),
       body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildGreed(),
-              if (viewModel.isCreateFileSelected) _buildCreateFile(),
-              if (viewModel.isOpenFileSelected) _buildOpenFile(),
-            ],
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                      width: 450,
+                      child: MainGreed(
+                        onNewFilePressed: viewModel.onCreateFilePressed,
+                        onOpenFilePressed: viewModel.onOpenFilePressed,
+                      )),
+                  if (viewModel.isCreateFileSelected)
+                    CreateFileWidget(viewModel: viewModel),
+                  if (viewModel.isOpenFileSelected)
+                    OpenFileWidget(viewModel: viewModel),
+                ],
+              ),
+            ),
           )),
     );
   }
+
+ 
 
   void _onDeveloperInfoPressed(BuildContext context) {
     showDialog(
@@ -80,100 +94,12 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildGreed() {
-    return SizedBox(
-        width: 450,
-        child: MainGreed(
-          onNewFilePressed: viewModel.onCreateFilePressed,
-          onOpenFilePressed: viewModel.onOpenFilePressed,
-        ));
-  }
-
   Widget _buildDrawer(context) {
     return MainDrawer(
       onCreateFilePressed: () {},
       onDeveloperInfoPressed: () => _onDeveloperInfoPressed(context),
       onLogoutPressed: viewModel.onLogoutPressed,
       onOpenFilePressed: () {},
-    );
-  }
-
-  Widget _buildOpenFile() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Open",
-          style: TextStyle(fontSize: 30),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        BorderButton(
-            height: 150,
-            width: 500,
-            title: "Click to open a file",
-            icon: Icons.file_open_rounded,
-            color: Colors.white,
-            borderColor: Colors.green,
-            onTap: () {}),
-      ],
-    );
-  }
-
-  Widget _buildCreateFile() {
-    return SizedBox(
-      height: 500,
-      width: 500,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Text(
-                "Create",
-                style: TextStyle(fontSize: 30),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              PrintAndSaveButtonsRow(
-                onPrintButtonPressed: () {},
-                onSaveButtonPressed: () {},
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FormTextField(
-            label: "File name",
-            onChanged: (value) {},
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "Enter data",
-            style: TextStyle(fontSize: 20),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: FormTextField(
-                maxLines: 10,
-                label: "",
-                onChanged: (value) {},
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-        ],
-      ),
     );
   }
 }

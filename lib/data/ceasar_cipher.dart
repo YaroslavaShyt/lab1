@@ -15,10 +15,15 @@ class CaesarCipher {
     String endUpper,
     String startLower,
     String endLower,
+    int max,
   ) {
     if (!validateData(data, pattern)) {
       throw ArgumentError(
           'Invalid data: Only alphabetic characters are allowed.');
+    }
+
+    if(!validateKey(shift, max)){
+      throw ArgumentError('Invalid key');
     }
 
     return data.split('').map((char) {
@@ -38,10 +43,15 @@ class CaesarCipher {
     String endUpper,
     String startLower,
     String endLower,
+    int max,
   ) {
     if (!validateData(data, pattern)) {
       throw ArgumentError(
           'Invalid data: Only alphabetic characters are allowed.');
+    }
+
+      if (!validateKey(shift, max)) {
+      throw ArgumentError('Invalid key');
     }
 
     return data.split('').map((char) {

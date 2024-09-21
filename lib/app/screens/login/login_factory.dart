@@ -3,7 +3,7 @@ import 'package:lab1/app/common/routing/inavigation_util.dart';
 import 'package:lab1/app/screens/login/login_screen.dart';
 import 'package:lab1/app/screens/login/login_view_model.dart';
 import 'package:lab1/app/services/user_service.dart';
-import 'package:lab1/di_manager.dart';
+import 'package:lab1/app/common/di_manager.dart';
 import 'package:provider/provider.dart';
 
 class LoginFactory {
