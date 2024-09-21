@@ -109,8 +109,8 @@ class HomeScreen extends StatelessWidget {
           height: 20,
         ),
         BorderButton(
-            height: 100,
-            width: 400,
+            height: 150,
+            width: 500,
             title: "Click to open a file",
             icon: Icons.file_open_rounded,
             color: Colors.white,

@@ -26,7 +26,7 @@ class MainGreed extends StatelessWidget {
         ),
         ContainerButton(
           title: "Open a file",
-          icon: Icons.add_box_rounded,
+          icon: Icons.file_open_rounded,
           onTap: onOpenFilePressed,
           color: Colors.green.shade300,
         ),
