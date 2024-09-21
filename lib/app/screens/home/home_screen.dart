@@ -4,6 +4,7 @@ import 'package:lab1/app/screens/home/home_view_model.dart';
 import 'package:lab1/app/screens/home/widgets/border_button.dart';
 import 'package:lab1/app/screens/home/widgets/drawer/main_drawer.dart';
 import 'package:lab1/app/screens/home/widgets/main_greed.dart';
+import 'package:lab1/app/screens/home/widgets/print_and_save_buttons_row.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -127,9 +128,20 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Create",
-            style: TextStyle(fontSize: 30),
+          Row(
+            children: [
+              const Text(
+                "Create",
+                style: TextStyle(fontSize: 30),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              PrintAndSaveButtonsRow(
+                onPrintButtonPressed: () {},
+                onSaveButtonPressed: () {},
+              )
+            ],
           ),
           const SizedBox(
             height: 20,

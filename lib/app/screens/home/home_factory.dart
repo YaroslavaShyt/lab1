@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab1/app/routing/inavigation_util.dart';
+import 'package:lab1/app/common/routing/inavigation_util.dart';
 import 'package:lab1/app/screens/home/home_screen.dart';
 import 'package:lab1/app/screens/home/home_view_model.dart';
 import 'package:lab1/app/services/user_service.dart';

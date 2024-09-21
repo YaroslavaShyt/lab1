@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lab1/app/routing/app_router.dart';
-import 'package:lab1/app/routing/inavigation_util.dart';
-import 'package:lab1/app/routing/routes.dart';
+import 'package:lab1/app/common/routing/app_router.dart';
+import 'package:lab1/app/common/routing/inavigation_util.dart';
+import 'package:lab1/app/common/routing/routes.dart';
 import 'package:provider/provider.dart';
 
 class CryptoApp extends StatelessWidget {

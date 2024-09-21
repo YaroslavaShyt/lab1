@@ -20,17 +20,8 @@ class MainDrawerHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Icon(
-            Icons.menu,
-            size: 40,
-            color: Colors.white,
-          ),
         ],
       ),
     );
-    
   }
 }

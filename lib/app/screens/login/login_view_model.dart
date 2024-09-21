@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:lab1/app/routing/inavigation_util.dart';
-import 'package:lab1/app/routing/routes.dart';
+import 'package:lab1/app/common/routing/inavigation_util.dart';
+import 'package:lab1/app/common/routing/routes.dart';
 import 'package:lab1/app/services/user_service.dart';
 
 class LoginViewModel extends ChangeNotifier {
