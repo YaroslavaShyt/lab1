@@ -5,7 +5,7 @@ class User {
   final String group;
 
   User({
-    required this.id,
+    this.id = '1',
     required this.group,
     required this.name,
     required this.surname,

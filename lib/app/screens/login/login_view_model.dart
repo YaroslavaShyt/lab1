@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lab1/app/routing/inavigation_util.dart';
 import 'package:lab1/app/routing/routes.dart';
-import 'package:provider/provider.dart';
+import 'package:lab1/app/services/user_service.dart';
 
 class LoginViewModel extends ChangeNotifier {
-  LoginViewModel({required INavigationUtil navigationUtil})
-      : _navigationUtil = navigationUtil;
-  final INavigationUtil _navigationUtil;
+  LoginViewModel({
+    required INavigationUtil navigationUtil,
+    required UserService userService,
+  })  : _navigationUtil = navigationUtil,
+        _userService = userService;
 
-  String email = '';
+  final INavigationUtil _navigationUtil;
+  final UserService _userService;
+
+  String name = '';
+  String surname = '';
+  String group = '';
   String password = '';
 
-  String? emailError;
-  String? passwordError;
+  VoidCallback get onOKPressed => _navigationUtil.navigateBack;
 
-  void onLoginButtonPressed(){
-    _navigationUtil.navigateTo(routeHome);
+  void onLoginButtonPressed({required VoidCallback onError}) {
+    final bool isUserSet = _userService.setUser(
+      name: name,
+      surname: surname,
+      group: group,
+    );
+    if (isUserSet) {
+      _navigationUtil.navigateToAndReplace(routeHome);
+    } else {
+      onError();
+    }
   }
-
-  
 }

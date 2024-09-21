@@ -24,7 +24,7 @@ class CryptoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: routeLogin,
+      initialRoute: routeHome,
     );
   }
 }
