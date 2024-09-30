@@ -1,0 +1,4 @@
+enum Ciphers{
+  ceasar,
+  trithemius
+}

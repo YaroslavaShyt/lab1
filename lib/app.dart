@@ -9,8 +9,7 @@ class CryptoApp extends StatelessWidget {
     required INavigationUtil navigationUtil,
     required AppRouter appRouter,
     super.key,
-  })  : 
-        _router = appRouter;
+  }) : _router = appRouter;
 
   final AppRouter _router;
 

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lab1/app/common/widgets/form_text_field.dart';
 import 'package:lab1/app/common/widgets/main_button.dart';
 import 'package:lab1/app/screens/home/home_view_model.dart';
-import 'package:lab1/app/screens/home/widgets/check_box_row.dart';
+import 'package:lab1/app/screens/home/widgets/checkbox/check_box_row.dart';
+import 'package:lab1/app/screens/home/widgets/checkbox/triple_check_box_row.dart';
 
 class ContinueRow extends StatelessWidget {
   const ContinueRow({required this.viewModel, super.key});
@@ -15,17 +16,51 @@ class ContinueRow extends StatelessWidget {
       children: [
         FormTextField(label: 'Key', onChanged: viewModel.onKeyChanges),
         CheckBoxRow(
-            isCheckedFirst: viewModel.isCheckedFirst,
-            isCheckedSecond: viewModel.isCheckedSecond,
-            onChangedFirst: viewModel.onFirstCheckBoxChanged,
-            onChangedSecond: viewModel.onSecondCheckBoxChanged),
-        DropdownButton(
-            value: viewModel.selectedValue,
-            items: const [
-              DropdownMenuItem(child: Text("Українська"), value: "Українська"),
-              DropdownMenuItem(child: Text("English"), value: "English"),
-            ],
-            onChanged: viewModel.onDropdownChange),
+          isCheckedFirst: viewModel.isCheckedFirst,
+          isCheckedSecond: viewModel.isCheckedSecond,
+          onChangedFirst: viewModel.onFirstCheckBoxChanged,
+          onChangedSecond: viewModel.onSecondCheckBoxChanged,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            DropdownButton(
+                value: viewModel.selectedLangValue,
+                items: const [
+                  DropdownMenuItem(
+                    value: "Українська",
+                    child: Text("Українська"),
+                  ),
+                  DropdownMenuItem(
+                    value: "English",
+                    child: Text("English"),
+                  ),
+                ],
+                onChanged: viewModel.onLanguageDropdownChange),
+            DropdownButton(
+                value: viewModel.selectedTypeValue,
+                items: const [
+                  DropdownMenuItem(
+                    value: "Цезарь",
+                    child: Text("Цезарь"),
+                  ),
+                  DropdownMenuItem(
+                    value: "Тритеміус",
+                    child: Text("Тритеміус"),
+                  ),
+                ],
+                onChanged: viewModel.onTypeDropdownChange),
+          ],
+        ),
+        const SizedBox(height: 30),
+        TripleCheckBoxRow(
+          isCheckedFirst: viewModel.is2DKey,
+          isCheckedSecond: viewModel.is3DKey,
+          isCheckedThird: viewModel.isKeyword,
+          onChangedFirst: viewModel.on2DKeyCheckBoxChanged,
+          onChangedSecond: viewModel.on3DKeyCheckBoxChanged,
+          onChangedThird: viewModel.onKeywordCheckBoxChanged,
+        ),
         const SizedBox(height: 30),
         Align(
           alignment: Alignment.center,

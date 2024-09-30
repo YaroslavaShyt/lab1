@@ -4,6 +4,7 @@ import 'package:lab1/app/common/routing/routes.dart';
 import 'package:lab1/app/services/encryption_service.dart';
 import 'package:lab1/app/services/file_service.dart';
 import 'package:lab1/app/services/user_service.dart';
+import 'package:lab1/data/ciphers.dart';
 import 'package:lab1/data/user.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -27,7 +28,12 @@ class HomeViewModel extends ChangeNotifier {
   bool isCheckedFirst = true;
   bool isCheckedSecond = false;
 
-  String selectedValue = "Українська";
+  bool is2DKey = false;
+  bool is3DKey = false;
+  bool isKeyword = false;
+
+  String selectedLangValue = "Українська";
+  String selectedTypeValue = "Цезарь";
   String key = '';
   String data = '';
   String fileName = '';
@@ -51,17 +57,50 @@ class HomeViewModel extends ChangeNotifier {
     VoidCallback onSuccess,
     VoidCallback onFailure,
   ) {
-    if (selectedValue == "Українська") {
+    if (selectedLangValue == "Українська") {
       resultData = isCheckedFirst
           ? _encryptionService.encryptUkrainian(
-              data: data, shift: int.parse(key))
+              data: data,
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            )
           : _encryptionService.decryptUkrainian(
-              data: data, shift: int.parse(key));
+              data: data,
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            );
     } else {
       resultData = isCheckedFirst
-          ? _encryptionService.encryptEnglish(data: data, shift: int.parse(key))
+          ? _encryptionService.encryptEnglish(
+              data: data,
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            )
           : _encryptionService.decryptEnglish(
-              data: data, shift: int.parse(key));
+              data: data,
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            );
     }
     if (resultData != null) {
       onSuccess();
@@ -72,15 +111,50 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   void onOpenFileNextPressed() {
-    if (selectedValue == "Українська") {
+    if (selectedLangValue == "Українська") {
       resultData = isCheckedFirst
-          ? _encryptionService.encryptUkrainian(data: '', shift: int.parse(key))
+          ? _encryptionService.encryptUkrainian(
+              data: '',
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            )
           : _encryptionService.decryptUkrainian(
-              data: '', shift: int.parse(key));
+              data: '',
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            );
     } else {
       resultData = isCheckedFirst
-          ? _encryptionService.encryptEnglish(data: '', shift: int.parse(key))
-          : _encryptionService.decryptEnglish(data: '', shift: int.parse(key));
+          ? _encryptionService.encryptEnglish(
+              data: '',
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            )
+          : _encryptionService.decryptEnglish(
+              data: '',
+              key2D: key.split(',').map(int.parse).toList(),
+              key3D: key.split(',').map(int.parse).toList(),
+              keyword: key,
+              shift: int.parse(key),
+              cipher: selectedTypeValue == "Цезарь"
+                  ? Ciphers.ceasar
+                  : Ciphers.trithemius,
+            );
     }
     notifyListeners();
   }
@@ -97,14 +171,40 @@ class HomeViewModel extends ChangeNotifier {
     key = val;
   }
 
-  void onDropdownChange(String? val) {
-    selectedValue = val!;
+  void onLanguageDropdownChange(String? val) {
+    selectedLangValue = val!;
+    notifyListeners();
+  }
+
+  void onTypeDropdownChange(String? val) {
+    selectedTypeValue = val!;
     notifyListeners();
   }
 
   void onFirstCheckBoxChanged(bool? value) {
     isCheckedFirst = value ?? isCheckedFirst;
     isCheckedSecond = !value!;
+    notifyListeners();
+  }
+
+  void onKeywordCheckBoxChanged(bool? value) {
+    isKeyword = value ?? isKeyword;
+    is3DKey = !value!;
+    is2DKey = !value;
+    notifyListeners();
+  }
+
+  void on2DKeyCheckBoxChanged(bool? value) {
+    is2DKey = value ?? is2DKey;
+    is3DKey = !value!;
+    isKeyword = !value;
+    notifyListeners();
+  }
+
+  void on3DKeyCheckBoxChanged(bool? value) {
+    is3DKey = value ?? is3DKey;
+    is2DKey = !value!;
+    isKeyword = !value;
     notifyListeners();
   }
 
