@@ -38,8 +38,8 @@ class TripleCheckBoxRow extends StatelessWidget {
         const Text("3D"),
         Checkbox(
           activeColor: Colors.green,
-          value: isCheckedSecond,
-          onChanged: onChangedSecond,
+          value: isCheckedThird,
+          onChanged: onChangedThird,
         ),
         const Text("Keyword"),
       ],

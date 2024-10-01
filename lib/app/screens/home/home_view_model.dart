@@ -61,20 +61,28 @@ class HomeViewModel extends ChangeNotifier {
       resultData = isCheckedFirst
           ? _encryptionService.encryptUkrainian(
               data: data,
-              key2D: key.split(',').map(int.parse).toList(),
-              key3D: key.split(',').map(int.parse).toList(),
-              keyword: key,
-              shift: int.parse(key),
+              key2D: is2DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              key3D: is3DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              keyword: isKeyword ? key : null,
+              shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
                   : Ciphers.trithemius,
             )
           : _encryptionService.decryptUkrainian(
               data: data,
-              key2D: key.split(',').map(int.parse).toList(),
-              key3D: key.split(',').map(int.parse).toList(),
-              keyword: key,
-              shift: int.parse(key),
+              key2D: is2DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              key3D: is3DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              keyword: isKeyword ? key : null,
+              shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
                   : Ciphers.trithemius,
@@ -83,20 +91,28 @@ class HomeViewModel extends ChangeNotifier {
       resultData = isCheckedFirst
           ? _encryptionService.encryptEnglish(
               data: data,
-              key2D: key.split(',').map(int.parse).toList(),
-              key3D: key.split(',').map(int.parse).toList(),
-              keyword: key,
-              shift: int.parse(key),
+              key2D: is2DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              key3D: is3DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              keyword: isKeyword ? key : null,
+              shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
                   : Ciphers.trithemius,
             )
           : _encryptionService.decryptEnglish(
               data: data,
-              key2D: key.split(',').map(int.parse).toList(),
-              key3D: key.split(',').map(int.parse).toList(),
-              keyword: key,
-              shift: int.parse(key),
+              key2D: is2DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              key3D: is3DKey
+                  ? key.split(',').map((item) => int.parse(item)).toList()
+                  : null,
+              keyword: isKeyword ? key : null,
+              shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
                   : Ciphers.trithemius,
@@ -189,22 +205,16 @@ class HomeViewModel extends ChangeNotifier {
 
   void onKeywordCheckBoxChanged(bool? value) {
     isKeyword = value ?? isKeyword;
-    is3DKey = !value!;
-    is2DKey = !value;
     notifyListeners();
   }
 
   void on2DKeyCheckBoxChanged(bool? value) {
     is2DKey = value ?? is2DKey;
-    is3DKey = !value!;
-    isKeyword = !value;
     notifyListeners();
   }
 
   void on3DKeyCheckBoxChanged(bool? value) {
     is3DKey = value ?? is3DKey;
-    is2DKey = !value!;
-    isKeyword = !value;
     notifyListeners();
   }
 

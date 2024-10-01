@@ -26,7 +26,7 @@ class EncryptionService {
             data, shift!, r'^[а-яА-ЯіїєґІЇЄҐ]+$', 'А', 'Я', 'а', 'я', 33),
         Ciphers.trithemius => _trithemiusCipher.encrypt(
             plaintext: data,
-            alphabet: r'^[а-яА-ЯіїєґІЇЄҐ]+$',
+            alphabet: 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ',
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
@@ -51,7 +51,7 @@ class EncryptionService {
             data, shift, r'^[а-яА-ЯіїєґІЇЄҐ]+$', 'А', 'Я', 'а', 'я', 33),
         Ciphers.trithemius => _trithemiusCipher.decrypt(
             ciphertext: data,
-            alphabet: r'^[а-яА-ЯіїєґІЇЄҐ]+$',
+            alphabet: 'АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ',
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
@@ -76,7 +76,7 @@ class EncryptionService {
             data, shift, r'^[a-zA-Z]+$', 'A', 'Z', 'a', 'z', 26),
         Ciphers.trithemius => _trithemiusCipher.encrypt(
             plaintext: data,
-            alphabet: r'^[a-zA-Z]+$',
+            alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
@@ -101,7 +101,7 @@ class EncryptionService {
             data, shift, r'^[a-zA-Z]+$', 'А', 'Я', 'а', 'я', 33),
         Ciphers.trithemius => _trithemiusCipher.decrypt(
             ciphertext: data,
-            alphabet: r'^[a-zA-Z]+$',
+            alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
