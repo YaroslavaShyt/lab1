@@ -1,4 +1,5 @@
 enum Ciphers{
   ceasar,
-  trithemius
+  trithemius,
+  vigenere,
 }

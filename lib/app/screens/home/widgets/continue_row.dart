@@ -48,6 +48,10 @@ class ContinueRow extends StatelessWidget {
                     value: "Тритеміус",
                     child: Text("Тритеміус"),
                   ),
+                   DropdownMenuItem(
+                    value: "Книжковий",
+                    child: Text("Книжковий"),
+                  ),
                 ],
                 onChanged: viewModel.onTypeDropdownChange),
           ],

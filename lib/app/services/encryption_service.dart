@@ -1,16 +1,20 @@
 import 'package:lab1/data/ceasar_cipher.dart';
 import 'package:lab1/data/ciphers.dart';
 import 'package:lab1/data/trithemius_cipher.dart';
+import 'package:lab1/data/vigenere_cipher.dart';
 
 class EncryptionService {
   EncryptionService({
     required CaesarCipher caesarCipher,
     required TrithemiusCipher trithemiusCipher,
+    required VigenereCipher vigenereCipher,
   })  : _caesarCipher = caesarCipher,
+        _vigenereCipher = vigenereCipher,
         _trithemiusCipher = trithemiusCipher;
 
   final CaesarCipher _caesarCipher;
   final TrithemiusCipher _trithemiusCipher;
+  final VigenereCipher _vigenereCipher;
 
   String? encryptUkrainian({
     required String data,
@@ -30,6 +34,10 @@ class EncryptionService {
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
+          ),
+        Ciphers.vigenere => _vigenereCipher.encrypt(
+            data,
+            keyword!,
           ),
       };
     } catch (error) {
@@ -55,7 +63,11 @@ class EncryptionService {
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
-          )
+          ),
+        Ciphers.vigenere => _vigenereCipher.decrypt(
+            data,
+            keyword!,
+          ),
       };
     } catch (error) {
       return null;
@@ -81,6 +93,10 @@ class EncryptionService {
             key3D: key3D,
             keyword: keyword,
           ),
+        Ciphers.vigenere => _vigenereCipher.encrypt(
+            data,
+            keyword!,
+          ),
       };
     } catch (error) {
       return null;
@@ -105,7 +121,11 @@ class EncryptionService {
             key2D: key2D,
             key3D: key3D,
             keyword: keyword,
-          )
+          ),
+        Ciphers.vigenere => _vigenereCipher.decrypt(
+            data,
+            keyword!,
+          ),
       };
     } catch (error) {
       return null;

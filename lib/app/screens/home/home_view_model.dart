@@ -71,7 +71,9 @@ class HomeViewModel extends ChangeNotifier {
               shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
-                  : Ciphers.trithemius,
+                  : selectedTypeValue == "Тритеміус"
+                      ? Ciphers.trithemius
+                      : Ciphers.vigenere,
             )
           : _encryptionService.decryptUkrainian(
               data: data,
@@ -85,7 +87,9 @@ class HomeViewModel extends ChangeNotifier {
               shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
-                  : Ciphers.trithemius,
+                  : selectedTypeValue == "Тритеміус"
+                      ? Ciphers.trithemius
+                      : Ciphers.vigenere,
             );
     } else {
       resultData = isCheckedFirst
@@ -101,7 +105,9 @@ class HomeViewModel extends ChangeNotifier {
               shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
-                  : Ciphers.trithemius,
+                  : selectedTypeValue == "Тритеміус"
+                      ? Ciphers.trithemius
+                      : Ciphers.vigenere,
             )
           : _encryptionService.decryptEnglish(
               data: data,
@@ -115,7 +121,9 @@ class HomeViewModel extends ChangeNotifier {
               shift: selectedTypeValue == 'Цезарь' ? int.parse(key) : 0,
               cipher: selectedTypeValue == "Цезарь"
                   ? Ciphers.ceasar
-                  : Ciphers.trithemius,
+                  : selectedTypeValue == "Тритеміус"
+                      ? Ciphers.trithemius
+                      : Ciphers.vigenere,
             );
     }
     if (resultData != null) {
